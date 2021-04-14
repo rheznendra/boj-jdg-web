@@ -4,7 +4,7 @@ Clone the repo locally:
 
 ```sh
 git clone https://github.com/rheznendra/boj-jdg-web.git
-cd project-kp
+cd boj-jdg-web
 ```
 
 Install PHP dependencies:
