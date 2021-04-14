@@ -1,0 +1,22 @@
+.form-table-action {
+    display: inline-block;
+}
+
+.form-result {
+    height: 300px;
+    min-height: 300px;
+    resize: vertical;
+}
+
+.form-separator:not(:last-child) {
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 1.5rem;
+}
+
+.form-control-textarea {
+    height: 350px;
+    min-height: 350px;
+    resize: vertical;
+}
+
+/*# sourceMappingURL=custom.css.map */
