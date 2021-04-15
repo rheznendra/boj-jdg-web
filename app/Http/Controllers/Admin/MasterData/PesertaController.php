@@ -52,11 +52,11 @@ class PesertaController extends Controller
 			'nama_anggota.*' => 'nama anggota'
 		]);
 
-		$users = User::count();
+		$users = User::where('angkatan', $request->angkatan)->count();
 		if (!$users) {
 			$nomor = 1;
 		} else {
-			$nomor = User::latest()->first()->nomor + 1;
+			$nomor = User::where('angkatan', $request->angkatan)->latest()->first()->nomor + 1;
 		}
 
 		$username = Str::upper(Str::random(8));
@@ -76,7 +76,7 @@ class PesertaController extends Controller
 		}
 		$user->Anggota()->createMany($anggota);
 
-		$result = "=========================\nKelompok $nomor\nUsername\t: $username\nPassword\t: $password\n=========================\nLink Login\t: http://bit.ly/login-boj";
+		$result = "=========================\nKelompok $nomor Angkatan $request->angkatan\nUsername\t: $username\nPassword\t: $password\n=========================\nLink Login\t: http://bit.ly/login-boj";
 
 		alert()
 			->success('Data successfully created.', 'Success!')
