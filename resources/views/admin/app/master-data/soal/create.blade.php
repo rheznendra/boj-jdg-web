@@ -42,7 +42,7 @@
                                     {!! Form::label('file', 'Choose File', ['class' => 'custom-file-label']) !!}
                                 </div>
                                 @error('file')
-                                <div class="invalid-feedback">
+                                <div class="invalid-feedback d-inline-block">
                                     {{ $message }}
                                 </div>
                                 @enderror

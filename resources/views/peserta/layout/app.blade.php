@@ -9,8 +9,8 @@
 
 <body class="layout-3">
     <div class="main-wrapper container">
-        @include('admin.partials.navbar')
-        @include('admin.partials.sidebar')
+        @include('peserta.partials.navbar')
+        @include('peserta.partials.topmenu')
         <div class="main-content">
             @yield('content')
         </div>

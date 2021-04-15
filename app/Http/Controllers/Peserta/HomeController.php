@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Peserta;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Soal;
+use App\Models\Rule;
 use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
@@ -14,7 +18,16 @@ class HomeController extends Controller
 	 */
 	public function index()
 	{
-		return view('peserta.app.home');
+		$user = auth()->user();
+		$timeSoal = null;
+		$timeNow = null;
+
+		$soal = Soal::where('angkatan', $user->angkatan)->first();
+		if ($soal) {
+			$timeSoal = strtotime($soal->start_time);
+			$timeNow = strtotime(now());
+		}
+		return view('peserta.app.home', compact('timeSoal', 'timeNow'));
 	}
 
 	/**
@@ -33,20 +46,24 @@ class HomeController extends Controller
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(Request $request)
+	public function store()
 	{
-		//
+		$user = Auth::user();
+		$soal = Soal::where('angkatan', $user->angkatan)->firstOrFail();
+		$ext = explode('.', $soal->nama_file)[1];
+
+		return Storage::disk('soal')->download($soal->nama_file, 'BOJ - Soal Angkatan ' . $user->angkatan . '.' . $ext);
 	}
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id)
+	public function show()
 	{
-		//
+		$data = Rule::get();
+		return view('peserta.app.ketentuan-peraturan', compact('data'));
 	}
 
 	/**

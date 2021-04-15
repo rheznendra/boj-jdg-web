@@ -28,7 +28,7 @@
                             <div class="col-sm-7 col-md-7 col-12">
                                 {!! Form::select('angkatan', [2019 => 2019, 2020 => 2020], null, ['placeholder' => '------Pilih------', 'class' => 'form-control' . ($errors->has('angkatan') ? ' is-invalid' : null), 'required']) !!}
                                 @error('angkatan')
-                                <div class="invalid-feedback">
+                                <div class="invalid-feedback d-inline-block">
                                     {{ $message }}
                                 </div>
                                 @enderror

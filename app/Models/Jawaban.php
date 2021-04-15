@@ -2,14 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Model;
 use Carbon\Carbon;
 
-class Soal extends Model
+class Jawaban extends Model
 {
-	use HasFactory;
-
 	/**
 	 * The attributes that aren't mass assignable.
 	 *
@@ -17,8 +14,8 @@ class Soal extends Model
 	 */
 	protected $guarded = [];
 
-	public function getBatasWaktuAttribute()
+	public function getUploadTimeAttribute()
 	{
-		return Carbon::parse($this->end_time)->isoFormat('HH:mm');
+		return Carbon::parse($this->updated_at)->isoFormat('HH:mm');
 	}
 }

@@ -33,4 +33,12 @@ class User extends Authenticatable
 	{
 		return $this->hasMany(Anggota::class, 'id_user', 'id')->orderBy('nim', 'asc');
 	}
+
+	/**
+	 * Get the jawaban
+	 */
+	public function Jawaban()
+	{
+		return $this->hasOne(Jawaban::class, 'id_user', 'id');
+	}
 }
