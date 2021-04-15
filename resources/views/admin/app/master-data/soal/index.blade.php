@@ -41,6 +41,7 @@
                                             <button class="btn btn-primary btn-icon">
                                                 <i class="fa fa-download"></i>
                                             </button>
+                                            {!! Form::close() !!}
                                         </td>
                                         <td>{!! $item->angkatan !!}</td>
                                         <td>{!! $item->start_time !!}</td>
