@@ -10,12 +10,10 @@
         </div>
     </div>
     <div class="section-body">
+        <h2 class="section-title">Jawaban Peserta</h2>
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h4>Jawaban Peserta</h4>
-                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped">
@@ -23,6 +21,7 @@
                                     <tr class="text-center">
                                         <th>No</th>
                                         <th>Kelompok</th>
+                                        <th>Angkatan</th>
                                         <th>File</th>
                                         <th>Waktu Upload</th>
                                         <th>Opsi</th>
@@ -33,6 +32,7 @@
                                     <tr>
                                         <td>{!! $loop->iteration !!}.</td>
                                         <td>Kelompok {!! $item->Kelompok->nomor !!}</td>
+                                        <td>{!! $item->Kelompok->angkatan !!}</td>
                                         <td>
                                             {!! Form::open(['route' => ['admin.jawaban-peserta.download', $item->id]]) !!}
                                             <button class="btn btn-primary btn-icon">

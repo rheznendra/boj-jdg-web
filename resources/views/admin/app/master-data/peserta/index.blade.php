@@ -27,6 +27,7 @@
                                         <th>#</th>
                                         <th>Kelompok</th>
                                         <th>Google Meet</th>
+                                        <th>Angkatan</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -38,6 +39,7 @@
                                         <td>
                                             <a href="//meet.google.com/{!! $item->kode_google_meet !!}" target="_blank">{!! $item->kode_google_meet !!}</a>
                                         </td>
+                                        <td>{!! $item->angkatan !!}</td>
                                         <td>
                                             <a href="{!! route('admin.master-data.peserta.edit', $item->id) !!}" class="btn btn-primary btn-icon" data-toggle="tooltip" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>

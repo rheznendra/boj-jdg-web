@@ -20,7 +20,7 @@ class PesertaController extends Controller
 	 */
 	public function index()
 	{
-		$data = User::get();
+		$data = User::orderBy('angkatan', 'asc')->orderBy('nomor', 'asc')->get();
 		return view('admin.app.master-data.peserta.index', compact('data'));
 	}
 
