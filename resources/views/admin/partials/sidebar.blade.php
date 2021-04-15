@@ -7,18 +7,22 @@
             <a href="{{ route('admin.home') }}">BOJ</a>
         </div>
         <ul class="sidebar-menu">
-            <li class="{{ request()->routeIs('admin.home') ? 'active' : null }}"><a class="nav-link" href="{{ route('admin.home') }}">
-                    <i class="fas fa-fire"></i> <span>Home</span></a>
+            <li class="{{ request()->routeIs('admin.home') ? 'active' : null }}">
+                <a class="nav-link" href="{{ route('admin.home') }}">
+                    <i class="fas fa-fire"></i> <span>Home</span>
+                </a>
             </li>
             <li class="dropdown{{ request()->segment(2) == 'master-data' ? ' active' : null }}">
                 <a href="javascript:;" class="nav-link has-dropdown">
                     <i class="fas fa-database"></i><span>Master Data</span>
                 </a>
                 <ul class="dropdown-menu">
+                    @if(Gate::check('master-admin') || Gate::check('sie-perkap'))
                     <li class="{!! request()->segment(2) == 'master-data' && request()->segment(3) == 'peserta' ? 'active' : null !!}">
                         <a class="nav-link" href="{!! route('admin.master-data.peserta.index') !!}">Data Peserta</a>
                     </li>
-                    @if(Gate::check('master-admin'))
+                    @endif
+                    @if(Gate::check('master-admin') || Gate::check('sie-lomba'))
                     <li class="{!! request()->segment(2) == 'master-data' && request()->segment(3) == 'soal' ? 'active' : null !!}">
                         <a class="nav-link" href="{!! route('admin.master-data.soal.index') !!}">Data Soal</a>
                     </li>
@@ -28,6 +32,13 @@
                     @endif
                 </ul>
             </li>
+            @if(Gate::check('master-admin') || Gate::check('sie-lomba'))
+            <li class="{{ request()->routeIs('admin.jawaban-peserta.index') ? 'active' : null }}">
+                <a class="nav-link" href="{{ route('admin.jawaban-peserta.index') }}">
+                    <i class="fas fa-tasks"></i> <span>Jawaban Peserta</span>
+                </a>
+            </li>
+            @endif
         </ul>
     </aside>
 </div>

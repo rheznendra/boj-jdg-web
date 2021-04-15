@@ -20,7 +20,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 		});
 		Route::namespace('MasterData')->prefix('master-data')->name('master-data.')->group(function () {
 
-			Route::prefix('peserta')->name('peserta.')->group(function () {
+			Route::middleware('role:master|sie-perkap')->prefix('peserta')->name('peserta.')->group(function () {
 				Route::get('/', 'PesertaController@index')->name('index');
 				Route::get('create', 'PesertaController@create')->name('create');
 				Route::post('create', 'PesertaController@store');
@@ -29,7 +29,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 				Route::delete('{data:id}/destroy', 'PesertaController@destroy')->name('destroy');
 			});
 
-			Route::middleware('can:master-admin')->group(function () {
+			Route::middleware('role:master|sie-lomba')->group(function () {
 
 				Route::prefix('ketentuan-peraturan')->name('ketentuan-peraturan.')->group(function () {
 					Route::get('/', 'KetentuanPeraturanController@index')->name('index');
@@ -47,6 +47,12 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 					Route::delete('{data:id}/download', 'SoalController@download')->name('download');
 				});
 			});
+		});
+
+		Route::middleware('role:master|sie-lomba')->prefix('jawaban-peserta')->name('jawaban-peserta.')->group(function () {
+			Route::get('/', 'JawabanController@index')->name('index');
+			Route::post('{data:id}/download', 'JawabanController@download')->name('download');
+			Route::delete('{data:id}/destroy', 'JawabanController@destroy')->name('destroy');
 		});
 	});
 });

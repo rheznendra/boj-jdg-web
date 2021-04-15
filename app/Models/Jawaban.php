@@ -18,4 +18,12 @@ class Jawaban extends Model
 	{
 		return Carbon::parse($this->updated_at)->isoFormat('HH:mm');
 	}
+
+	/**
+	 * Get the kelompok
+	 */
+	public function Kelompok()
+	{
+		return $this->belongsTo(User::class, 'id_user', 'id');
+	}
 }
