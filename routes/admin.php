@@ -44,7 +44,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 					Route::get('{data:id}/edit', 'SoalController@edit')->name('edit');
 					Route::patch('{data:id}/edit', 'SoalController@update');
 					Route::delete('{data:id}/destroy', 'SoalController@destroy')->name('destroy');
-					Route::delete('{data:id}/download', 'SoalController@download')->name('download');
+					Route::post('{data:id}/download', 'SoalController@download')->name('download');
 				});
 			});
 		});
