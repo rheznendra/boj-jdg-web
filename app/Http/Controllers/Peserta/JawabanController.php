@@ -25,7 +25,15 @@ class JawabanController extends Controller
 		$jawaban = Jawaban::where('id_user', $user->id)->first();
 		$timeNow = strtotime(now());
 		$endTimeSoal = strtotime($soal->end_time);
+		$startTimeSoal = strtotime($soal->start_time);
 		$canUpload = true;
+		if ($timeNow < $startTimeSoal) {
+			alert()
+				->error('Waktu pengerjaan belum dimulai.', 'Gagal')
+				->persistent('Tutup')
+				->autoclose(5000);
+			return redirect()->route('home');
+		}
 
 		if ($timeNow > $endTimeSoal) {
 			$canUpload = false;
@@ -44,7 +52,15 @@ class JawabanController extends Controller
 		$soal = Soal::where('angkatan', $user->angkatan)->firstOrFail();
 		$timeNow = strtotime(now());
 		$endTimeSoal = strtotime($soal->end_time);
+		$startTimeSoal = strtotime($soal->start_time);
 		$isExists = Jawaban::where('id_user', $user->id)->exists();
+		if ($timeNow < $startTimeSoal) {
+			alert()
+				->error('Waktu pengerjaan belum dimulai.', 'Gagal')
+				->persistent('Tutup')
+				->autoclose(5000);
+			return redirect()->route('home');
+		}
 		if ($timeNow > $endTimeSoal) {
 			alert()
 				->error('Waktu pengumpulan telah melewati batas.', 'Gagal')
@@ -72,7 +88,15 @@ class JawabanController extends Controller
 		$soal = Soal::where('angkatan', $user->angkatan)->firstOrFail();
 		$timeNow = strtotime(now());
 		$endTimeSoal = strtotime($soal->end_time);
+		$startTimeSoal = strtotime($soal->start_time);
 		$isExists = Jawaban::where('id_user', $user->id)->exists();
+		if ($timeNow < $startTimeSoal) {
+			alert()
+				->error('Waktu pengerjaan belum dimulai.', 'Gagal')
+				->persistent('Tutup')
+				->autoclose(5000);
+			return redirect()->route('home');
+		}
 		if ($timeNow > $endTimeSoal) {
 			alert()
 				->error('Waktu pengumpulan telah melewati batas.', 'Gagal')
@@ -126,6 +150,14 @@ class JawabanController extends Controller
 		$data = Jawaban::where('id_user', $user->id)->firstOrFail();
 		$timeNow = strtotime(now());
 		$endTimeSoal = strtotime($soal->end_time);
+		$startTimeSoal = strtotime($soal->start_time);
+		if ($timeNow < $startTimeSoal) {
+			alert()
+				->error('Waktu pengerjaan belum dimulai.', 'Gagal')
+				->persistent('Tutup')
+				->autoclose(5000);
+			return redirect()->route('home');
+		}
 		if ($timeNow > $endTimeSoal) {
 			alert()
 				->error('Waktu pengumpulan telah melewati batas.', 'Gagal')
@@ -150,6 +182,14 @@ class JawabanController extends Controller
 		$jawaban = Jawaban::where('id_user', $user->id)->firstOrFail();
 		$timeNow = strtotime(now());
 		$endTimeSoal = strtotime($soal->end_time);
+		$startTimeSoal = strtotime($soal->start_time);
+		if ($timeNow < $startTimeSoal) {
+			alert()
+				->error('Waktu pengerjaan belum dimulai.', 'Gagal')
+				->persistent('Tutup')
+				->autoclose(5000);
+			return redirect()->route('home');
+		}
 		if ($timeNow > $endTimeSoal) {
 			alert()
 				->error('Waktu pengumpulan telah melewati batas.', 'Gagal')
