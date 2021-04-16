@@ -62,7 +62,7 @@ class HomeController extends Controller
 	 */
 	public function show()
 	{
-		$data = Rule::get();
+		$data = Rule::orderByRaw('FIELD(kategori, "ketentuan", "peraturan")')->get();
 		return view('peserta.app.ketentuan-peraturan', compact('data'));
 	}
 
